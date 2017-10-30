@@ -17,7 +17,11 @@ app.get("/", function(req, res){
 function dateConvert(string){  
   //Number(string).toString().length  convers to a number to get rid of the zero, if the first number is a zero.
   if(!isNaN((string))){ ///unix unit so conver to standard format
+
     var date = new Date(Number(string*1000))
+    if(isNaN(date.getMonth())){
+       return {"unix": null, "natural": null }
+     }
     return {"unix": Number(string), "natural": months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() }
   }
   else {    
